@@ -23,7 +23,7 @@ public class BaseScreen implements Screen, InputProcessor {
     private Matrix4 worldToGl;
     private Matrix3 screenToWorld;
 
-    protected Vector2 touch;
+    private Vector2 touch;
 
     @Override
     public void show() {
@@ -34,6 +34,7 @@ public class BaseScreen implements Screen, InputProcessor {
         glBounds = new Rect(0, 0, 1f, 1f);
         worldToGl = new Matrix4();
         screenToWorld = new Matrix3();
+        touch = new Vector2();
     }
 
     @Override
@@ -96,11 +97,7 @@ public class BaseScreen implements Screen, InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        if(touch == null){
-            touch = new Vector2(screenX, screenBounds.getHeight() - screenY).mul(screenToWorld);
-        } else {
-            touch.set(screenX, screenBounds.getHeight() - screenY).mul(screenToWorld);
-        }
+        touch.set(screenX, screenBounds.getHeight() - screenY).mul(screenToWorld);
         touchDown(touch, pointer, button);
         return false;
     }
