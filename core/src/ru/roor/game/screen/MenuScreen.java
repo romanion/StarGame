@@ -1,26 +1,29 @@
 package ru.roor.game.screen;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
+
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.math.Vector2;
 
 import ru.roor.game.base.BaseScreen;
 import ru.roor.game.math.Rect;
 import ru.roor.game.sprite.Background;
+import ru.roor.game.sprite.Logo;
+
 
 public class MenuScreen extends BaseScreen {
 
-    private Texture img;
     private Texture bg;
+    private Texture lg;
+
     private Background background;
+    private Logo logo;
 
     @Override
     public void show() {
         super.show();
-        img = new Texture("badlogic.jpg");
         bg = new Texture("textures/bg.png");
+        lg = new Texture("spaceship.jpg");
         background = new Background(bg);
+        logo = new Logo(lg);
     }
 
     @Override
@@ -33,13 +36,14 @@ public class MenuScreen extends BaseScreen {
         super.render(delta);
         batch.begin();
         background.draw(batch);
+        logo.draw(batch, touch);
         batch.end();
     }
 
     @Override
     public void dispose() {
-        img.dispose();
         bg.dispose();
+        lg.dispose();
         super.dispose();
     }
 
