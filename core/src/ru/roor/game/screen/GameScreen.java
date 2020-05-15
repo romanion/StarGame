@@ -1,6 +1,8 @@
 package ru.roor.game.screen;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -21,6 +23,8 @@ public class GameScreen extends BaseScreen {
     private MainShip mainShip;
     private Star[] stars;
     private BulletPool bulletPool;
+    private Music music;
+
 
     @Override
     public void show() {
@@ -34,6 +38,13 @@ public class GameScreen extends BaseScreen {
         for (int i = 0; i < stars.length; i++) {
             stars[i] = new Star(atlas);
         }
+        setMusic();
+    }
+
+    public void setMusic(){
+        music = Gdx.audio.newMusic(Gdx.files.internal("music/game_music.mp3"));
+        music.setLooping(true);
+        music.play();
     }
 
     @Override
@@ -58,6 +69,7 @@ public class GameScreen extends BaseScreen {
         bg.dispose();
         atlas.dispose();
         bulletPool.dispose();
+        music.dispose();
         super.dispose();
     }
 
