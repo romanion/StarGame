@@ -50,6 +50,7 @@ public class MainShip extends Ship {
     @Override
     public void update(float delta) {
         super.update(delta);
+        autoFire(delta);
         if (getLeft() < worldBounds.getLeft()) {
             stop();
             setLeft(worldBounds.getLeft());
