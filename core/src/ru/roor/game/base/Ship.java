@@ -76,6 +76,14 @@ public class Ship extends Sprite {
         sound.play();
     }
 
+    protected void autoFire(float delta) {
+        reloadTimer += delta;
+        if (reloadTimer >= reloadInterval) {
+            shoot();
+            reloadTimer = 0f;
+        }
+    }
+
     private void boom() {
         Explosion explosion = explosionPool.obtain();
         explosion.set(getHeight(), pos);
